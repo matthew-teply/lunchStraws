@@ -15,10 +15,12 @@ export default function RoomInfoUrl(props: Props) {
     return (
         <div className='inline-flex items-center my-4'>
             <Input value={props.url} readOnly className='h-8' />
+
             <Button 
                 onClick={() => copy(props.url)} 
                 disabled={isCopied}
                 className='ml-2'
+                variant='success'
             >
                 {
                     isCopied
