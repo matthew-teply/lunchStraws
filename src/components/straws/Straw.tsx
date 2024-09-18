@@ -8,13 +8,15 @@ const getModifierClasses = (isPicked: boolean): string[] => {
     if (isPicked) {
         return [
             'bg-slate-100',
-            'translate-y-4'
+            'translate-y-4',
+            'cursor-not-allowed',
         ]
     }
 
     return [
         'bg-slate-400',
         'hover:translate-y-4',
+        'cursor-pointer',
     ]
 }
 
@@ -30,7 +32,6 @@ export default function Straw(props: Props) {
                 min-h-40 
                 p-1 
                 mx-4
-                cursor-pointer
                 transition-all
 
                 ${modifierClasses.join(' ')}
