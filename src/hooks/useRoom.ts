@@ -3,6 +3,8 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { generateRoomLink } from '../utils/roomNavigation';
 
 export const useRoom = () => {
+    const url = window.location.href;
+
     const { name } = useParams();
     const [searchParams] = useSearchParams();
 
@@ -22,7 +24,7 @@ export const useRoom = () => {
             let shortestStraw = undefined;
 
             if (currentPlayer! + 1 > players!) {
-                shortestStraw = Math.floor(Math.random() * (players! - 0 + 1) + 0)
+                shortestStraw = Math.floor(Math.random() * (players!) + 1)
             }
 
             const nextStageLink = generateRoomLink(
@@ -64,5 +66,6 @@ export const useRoom = () => {
         isValid,
         pickStraw,
         shortestStraw,
+        url,
     }
 }

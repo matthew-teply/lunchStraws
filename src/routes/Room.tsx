@@ -13,6 +13,7 @@ export default function Room() {
         isValid,
         pickStraw,
         shortestStraw,
+        url,
     } = useRoom();
 
     if (!isValid) {
@@ -23,7 +24,7 @@ export default function Room() {
         return (
             <Jumbotron>
                 <h1 className='text-4xl mb-12'>{roomName}</h1>
-                <h1 className='text-danger text-4xl mb-12'>Player {shortestStraw} has the shortest straw!</h1>
+                <h1 className='text-danger text-4xl mb-12'>Player {shortestStraw} is buying lunch!</h1>
             </Jumbotron>
         )
     }
@@ -41,6 +42,7 @@ export default function Room() {
                 roomName={roomName!} 
                 players={Number(players!)} 
                 currentPlayer={Number(currentPlayer!)}
+                url={url}
             />
         </Jumbotron>
     )
