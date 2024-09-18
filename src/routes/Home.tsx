@@ -1,4 +1,4 @@
-import Jumbotron from '../components/Jumbotron';
+import Jumbotron from '../components/ui/Jumbotron';
 import RoomForm from '../components/rooms/RoomForm';
 
 export default function Home() {

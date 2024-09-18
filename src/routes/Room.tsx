@@ -1,6 +1,6 @@
 import { useRoom } from '../hooks/useRoom';
 
-import Jumbotron from '../components/Jumbotron';
+import Jumbotron from '../components/ui/Jumbotron';
 import RoomInfo from '../components/rooms/RoomInfo';
 import StrawDisplay from '../components/straws/StrawDisplay';
 
