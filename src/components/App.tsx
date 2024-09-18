@@ -1,7 +1,21 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import Home from '../routes/Home';
+
+import Header from './partials/Header';
+
+const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home />,
+    },
+]);
+
 export default function App() {
     return (
-        <div>
-            <h1>Lunch straws</h1>
-        </div>
+        <>
+            <Header />
+            <RouterProvider router={router} />
+        </>
     )
 }
