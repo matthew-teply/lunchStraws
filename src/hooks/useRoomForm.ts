@@ -2,12 +2,16 @@ import { useState, FormEvent } from 'react';
 
 export type RoomFormProps = {
     minRoomNameLength?: number,
+    maxRoomNameLength?: number,
     minPlayers?: number,
+    maxPlayers?: number,
 }
 
 export const useRoomForm = ({ 
     minRoomNameLength = 3,
+    maxRoomNameLength = 50,
     minPlayers = 2,
+    maxPlayers = 12,
 }: RoomFormProps) => {
     const [roomName, setRoomName] = useState<string>('');
     const [players, setPlayers] = useState<number>(minPlayers);
@@ -19,8 +23,16 @@ export const useRoomForm = ({
             setError(`Room name has to be atleast ${minRoomNameLength} characters long`);
 
             return false;
+        } else if (roomName.length > maxRoomNameLength) {
+            setError(`Room name has to be at maximum ${maxRoomNameLength} characters long`);
+
+            return false;
         } else if (players < minPlayers) {
             setError(`You have to set at least ${minPlayers} players`);
+
+            return false;
+        } else if (players > maxPlayers) {
+            setError(`You can have a maximum of ${maxPlayers} players`);
 
             return false;
         }
@@ -45,6 +57,8 @@ export const useRoomForm = ({
         handleSubmit,
         validate,
         minRoomNameLength,
+        maxRoomNameLength,
         minPlayers,
+        maxPlayers,
     }
 }

@@ -17,6 +17,7 @@ export default function RoomForm() {
         players, 
         setPlayers,
         minPlayers,
+        maxRoomNameLength,
     } = useRoomForm({});
 
     const onSubmit = () => {
@@ -34,20 +35,22 @@ export default function RoomForm() {
         <form onSubmit={e => handleSubmit(e, onSubmit)}>
             <Input
                 type='text' 
+                maxLength={maxRoomNameLength}
                 placeholder='Room name'
                 onChange={e => setRoomName(e.currentTarget.value)}
+                className='m-1'
             />
 
             <Input 
                 type='number' 
                 min={minPlayers}
-                value={players}
                 placeholder='Number of player'
                 onChange={e => setPlayers(Number(e.currentTarget.value))}
+                className='m-1'
             />
 
-            <Button type='submit'>
-                Create
+            <Button type='submit' className='m-1'>
+                Create!
             </Button>
 
             {

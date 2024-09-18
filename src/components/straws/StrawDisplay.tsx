@@ -8,19 +8,22 @@ type Props = {
 
 export default function StrawDisplay(props: Props) {
     return (
-        <div className='inline-flex justify-center overflow-hidden'>
-            {
-                [...Array(props.players)].map((_, key) => {
-                    return (
-                        <Straw 
-                            index={key} 
-                            key={key}
-                            isPicked={props.picked.indexOf(key) !== -1}
-                            onClick={props.onPick}
-                        />
-                    )
-                })
-            }
+        <div className='bg-white rounded-t-md pt-4'>
+            <p className='text-gray-400 mb-4'>Pick a straw...</p>
+            <div className='inline-flex justify-center overflow-hidden'>
+                {
+                    [...Array(props.players)].map((_, key) => {
+                        return (
+                            <Straw 
+                                index={key} 
+                                key={key}
+                                isPicked={props.picked.indexOf(key) !== -1}
+                                onClick={props.onPick}
+                            />
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }

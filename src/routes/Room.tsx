@@ -1,8 +1,8 @@
 import { useRoom } from '../hooks/useRoom';
 
-import Jumbotron from '../components/ui/Jumbotron';
-import RoomInfo from '../components/rooms/RoomInfo';
-import StrawDisplay from '../components/straws/StrawDisplay';
+import RoomFinished from '../components/rooms/RoomFinished';
+import RoomPlaying from '../components/rooms/RoomPlaying';
+import RoomInvalid from '../components/rooms/RoomInvalid';
 
 export default function Room() {
     const {
@@ -14,36 +14,31 @@ export default function Room() {
         pickStraw,
         shortestStraw,
         url,
+        restart,
     } = useRoom();
 
     if (!isValid) {
-        return <p>Room is not valid!</p>;
+        return <RoomInvalid />
     }
 
     if (shortestStraw !== null) {
         return (
-            <Jumbotron>
-                <h1 className='text-4xl mb-12'>{roomName}</h1>
-                <h1 className='text-danger text-4xl mb-12'>Player {shortestStraw} is buying lunch!</h1>
-            </Jumbotron>
-        )
+            <RoomFinished
+                roomName={roomName ?? ''}
+                shortestStraw={shortestStraw}
+                restart={restart}
+            />
+        );
     }
 
     return (
-        <Jumbotron>
-            <h1 className='text-4xl mb-12'>{roomName}</h1>
-
-            <StrawDisplay 
-                players={Number(players)}
-                picked={picked}
-                onPick={pickStraw}
-            />
-            <RoomInfo 
-                roomName={roomName!} 
-                players={Number(players!)} 
-                currentPlayer={Number(currentPlayer!)}
-                url={url}
-            />
-        </Jumbotron>
+        <RoomPlaying
+            roomName={roomName!}
+            players={players!}
+            currentPlayer={currentPlayer!}
+            picked={picked}
+            url={url}
+            pickStraw={pickStraw}
+        />
     )
 }

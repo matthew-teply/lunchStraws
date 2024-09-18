@@ -39,12 +39,27 @@ export const useRoom = () => {
         }
     }
 
+    const restart = () => {
+        if (isValid) {
+            const restartLink = generateRoomLink(
+                roomName!,
+                players!,
+                1,
+                [],
+            )
+
+            navigate(restartLink);
+        }
+    }
+
     useEffect(() => {
         const shortestStrawSearchParam = searchParams.get('shortestStraw');
+        const playerSearchParam = searchParams.get('players');
+        const currentPlayerSearchParam = searchParams.get('currentPlayer');
 
         setRoomName(name ?? null);
-        setPlayers(Number(searchParams.get('players')));
-        setCurrentPlayer(Number(searchParams.get('currentPlayer')));
+        setPlayers(playerSearchParam !== null ? Number(playerSearchParam) : null);
+        setCurrentPlayer(currentPlayerSearchParam !== null ? Number(currentPlayerSearchParam) : null);
         setPicked(JSON.parse(searchParams.get('picked') ?? '[]'))
         setShortestStraw(shortestStrawSearchParam !== null ? Number(shortestStrawSearchParam) : null);
     }, [searchParams, name]);
@@ -67,5 +82,6 @@ export const useRoom = () => {
         pickStraw,
         shortestStraw,
         url,
+        restart,
     }
 }
